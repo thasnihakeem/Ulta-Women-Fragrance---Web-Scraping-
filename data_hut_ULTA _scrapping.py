@@ -157,6 +157,7 @@ for each_product in range(len(data)):
 
     
 #converting 'Details' TO A dictionary
+df['Details']=df['Details'].apply(lambda x:x.strip('][').split(', '))
 for i in range(len(df)):
     dic={}
     while dic=={}:
@@ -233,7 +234,5 @@ for i in range(len(df)):
 # to print data
 print(df)   
 
-
-
-
-
+# Convering data to a csv file
+df.to_csv("Ulta_Women_Fragrance_Data")
