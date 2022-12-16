@@ -31,26 +31,51 @@ def extract_content(url):
 def brand(dom):
     brand=(dom.xpath('//*[@class="Link_Huge Link_Huge--compact"]/text()'))
     df['brand'].iloc[each_product] = brand
+    df[['brand']] = df[['brand']].astype(str)
+    df['brand'] = df['brand'].str.replace('[','')
+    df['brand'] = df['brand'].str.replace(']','')
 
 def product(dom):
     product=(dom.xpath('//*[@class="Text-ds Text-ds--title-5 Text-ds--left"]/text()'))
     df['product_name'].iloc[each_product] = product
+    df[['product_name']] = df[['product_name']].astype(str)
+    df["product_name"] = df["product_name"].str.replace('[','')
+    df["product_name"] = df["product_name"].str.replace(']','')
 
 def reviews(dom):
     number_of_reviews=(dom.xpath('//*[@class="Text-ds Text-ds--body-3 Text-ds--left Text-ds--neutral-600"]/text()'))
     df['number_of_reviews'].iloc[each_product] = number_of_reviews
+    df[['number_of_reviews']] = df[['number_of_reviews']].astype(str)
+    df["number_of_reviews"] = df["number_of_reviews"].str.replace(',','')
+    df["number_of_reviews"] = df["number_of_reviews"].str.replace('(','')
+    df["number_of_reviews"] = df["number_of_reviews"].str.replace(')','')
+    df["number_of_reviews"] = df["number_of_reviews"].str.replace('[','')
+    df["number_of_reviews"] = df["number_of_reviews"].str.replace(']','')
+    df["number_of_reviews"] = df["number_of_reviews"].str.replace('size:','')
 
 def star_rating(dom):
     star_rating=(dom.xpath('//*[@class="Text-ds Text-ds--body-3 Text-ds--left"]/text()'))
     df['star_rating'].iloc[each_product] = star
+    df[['star_rating']] = df[['star_rating']].astype(str)
+    df["star_rating"] = df["star_rating"].str.replace(']','')
+    df["star_rating"] = df["star_rating"].str.replace('[','')
+    df["star_rating"] = df["star_rating"].str.replace('Q & A','')
 
 def price(driver):
     price=driver.find_element("xpath",'//*[@class="Text-ds Text-ds--title-6 Text-ds--left Text-ds--black"]').text()
     df['price'].iloc[each_product] = price
+    df[['price']] = df[['price']].astype(str)
+    df["Price"] = df["Price"].str.replace('[','')
+    df["Price"] = df["Price"].str.replace(']','')
+    df["Price"] = df["Price"].str.replace('$','')
+    df["Price"] = df["Price"].str.replace("'",'')
     
 def ingredients(dom):
     Ingredients=(dom.xpath('//*[@id="bb5f7945-7101-402b-b8b3-1ad025315d50"]/div/div/details[3]/div/div/p[1]/text()'))
     df['Ingredients'].iloc[each_product] = Ingredients  
+     df[['Ingredients']] = df[['Ingredients']].astype(str)
+    df["Ingredients"] = df["Ingredients"].str.replace('[','')
+    df["Ingredients"] = df["Ingredients"].str.replace(']','')
     
 def Fragrance_Description(dom):
     Fragrance_Description=(dom.xpath('//*[@class="Text-ds Text-ds--subtitle-1 Text-ds--left"]/text()'))
