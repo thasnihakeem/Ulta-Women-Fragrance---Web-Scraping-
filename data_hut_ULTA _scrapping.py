@@ -73,7 +73,7 @@ def price(driver):
 def ingredients(dom):
     Ingredients=(dom.xpath('//*[@id="bb5f7945-7101-402b-b8b3-1ad025315d50"]/div/div/details[3]/div/div/p[1]/text()'))
     df['Ingredients'].iloc[each_product] = Ingredients  
-     df[['Ingredients']] = df[['Ingredients']].astype(str)
+    df[['Ingredients']] = df[['Ingredients']].astype(str)
     df["Ingredients"] = df["Ingredients"].str.replace('[','')
     df["Ingredients"] = df["Ingredients"].str.replace(']','')
     
