@@ -191,14 +191,12 @@ for each_product in range(len(df)):
     ingredients(product_content)                           #ingredients
     Fragrance_Description(product_content)                 #Fragrance Description
         
-
 # Scraping 'price' and 'Details' data
 for each_product in range(len(df)):
     driver.get(df['product_url'].iloc[each_product])
     price(product_content)                                 #price
     Details(product_content)                               #Details
-
-
+   
 #converting 'Details' TO A dictionary
 df['Details']=df['Details'].apply(lambda x:x.strip('][').split(', ')) #to strip and split the 'Details' data
 for i in range(len(df)):
@@ -217,11 +215,9 @@ for i in range(len(df)):
                     keys.append(split_section[j])                    #append the key to the key list
                     values.append(split_section[j+1])                #append the value to the value list
 
-
                 if split_section[j]=='Fragrance Family':             #to get 'Fragrance Family' from 'Details' data
                     keys.append(split_section[j])                    #append the key to the key list
                     values.append(split_section[j+1])                #append the value to the value list
-
 
                 if split_section[j]=='Key Notes':                    #to get 'Key Notes' from 'Details' data
                     keys.append(split_section[j])                    #append the key to the key list
@@ -231,17 +227,14 @@ for i in range(len(df)):
                     keys.append(split_section[j])                    #append the key to the key list
                     values.append(split_section[j+1])                #append the value to the value list
 
-
                 if split_section[j]=='Scent Type':                   #to get 'Scent Type' from 'Details' data
                     keys.append(split_section[j])                    #append the key to the key list
                     values.append(split_section[j+1])                #append the value to the value list
                     
-        
                 if (p==len(df['Details'].iloc[i])-1) and (j==len(split_section)-1) and (keys==[]):
                     dic=np.nan                                       #if the data note found ,to print NaN value
      
             try:                                                     #try to get the data
-
                 for l in range(len(keys)):
                     dic[keys[l]]=values[l]                           #to store the keys and values in empty dictionary
             except:
@@ -251,13 +244,13 @@ for i in range(len(df)):
     
     
 # extracting 'Fragrance Family','Scent Type','Key Notes' and 'Composition' data from 'Details' Dictionary
-for i in range(len(df)):                                       #to store the keys and values in empty dictionary
+for i in range(len(df)):                                            #to store the keys and values in empty dictionary
     try:
-        df['Details'][i]=ast.literal_eval(df['Details'][i])    #safely evaluate strings containing data from unknown sources
-    except:                                                    #if the data note found ,to let it pass
+        df['Details'][i]=ast.literal_eval(df['Details'][i])         #safely evaluate strings containing data from unknown sources
+    except:                                                         #if the data note found ,to let it pass
         pass
     
-df=df[df['Details'].apply(lambda x: isinstance(x, dict))]      #converting object to dictionary
+df=df[df['Details'].apply(lambda x: isinstance(x, dict))]           #converting object to dictionary
 
 for i in range(len(df)):
     df['Fragrance Family'].iloc[i]=df['Details'].iloc[i].get('Fragrance_Family') #To add 'Fragrance Family' data to 'Fragrance Family' column
