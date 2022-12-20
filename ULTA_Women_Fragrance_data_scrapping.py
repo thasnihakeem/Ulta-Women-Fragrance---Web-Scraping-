@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 # Importing libraries
 import re
 import ast
@@ -212,4 +206,3 @@ print(df)
 
 # Convering data to a csv file
 df.to_csv("Ulta_Women_Fragrance_Data")
-
