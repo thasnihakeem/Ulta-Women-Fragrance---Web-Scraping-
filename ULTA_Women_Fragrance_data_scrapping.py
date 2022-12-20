@@ -73,7 +73,6 @@ def reviews(dom):
         df['number_of_reviews'].iloc[each_product] = number_of_reviews   
     return  number_of_reviews
 
-
 def star_rating(dom):
     try:                                                                                       #try to get the data
         star_rating=(dom.xpath('//*[@class="Text-ds Text-ds--body-3 Text-ds--left"]/text()'))  #get the star_rating of the listing
@@ -88,18 +87,16 @@ def star_rating(dom):
     return  star_rating
 
 def Price():
-    try:                                                                                                          #try to get the data
-        Prices=driver.find_element(By.XPATH,'//*[@id="1b7a3ab3-2765-4ee2-8367-c8a0e7230fa4"]/span').text          #get the Price of the listing
-        Prices = str(Prices)                                                                                      #converting to string
-        Prices = Prices.replace('[','')                                                                           #Removing unwanted characters
+    try:                                                                                                    #try to get the data
+        Prices=driver.find_element(By.XPATH,'//*[@id="1b7a3ab3-2765-4ee2-8367-c8a0e7230fa4"]/span').text    #get the Price of the listing
+        Prices = str(Prices)                                                                                #converting to string
+        Prices = Prices.replace('[','')                                                                     #Removing unwanted characters
         Prices = Prices.replace(']','')
         Prices = Prices.replace('$','')
         Prices = Prices.replace("'",'')
-
-    except:                                                                                                       #if the Price is not found, print the error message
+    except:                                                                                                 #if the Price is not found, print the error message
         Prices = "Price is not available" 
     return Prices
-
 
 def ingredients(dom):
     try:                                                                                                                   #try to get the data
@@ -134,7 +131,6 @@ def Detail():
     except:                                                                                                                #if the Details is not found, print the error message
         Details = "Details is not available"
     return Details                                                                                 
-
 
 # Ulta website link
 URL="https://www.ulta.com/womens-fragrance?N=26wn"
@@ -188,7 +184,7 @@ for each_product in range(len(df)):
     star_rating(product_content)                           # star_rating
     ingredients(product_content)                           #ingredients
     
-# Scraping 'price' ,'Fragrance Description' dataand 'Details' data
+# Scraping 'price' ,'Fragrance Description' and 'Details' data
 for each_product in range(len(df)):
     driver.get(df['Product_url'].iloc[each_product])               
     price=Price()                                                                   #Price
