@@ -150,8 +150,8 @@ while URL!=[]:
 
         else:
             URL=[] 
-base_url_links=set(base_url_link)       # converting base_url_link to set to get unique values        
-page_lst_link=list(base_url_links)      # converting to list
+base_url_links=set(base_url_link)                                           # converting base_url_link to set to get unique values        
+page_lst_link=list(base_url_links)                                          # converting to list
 
 # Fetching all resulted product links
 product_links = []
@@ -159,10 +159,10 @@ for each_page_link in  page_lst_link:
      driver.get(each_page_link)
     response = driver.page_source
     soup = BeautifulSoup(response , 'html.parser')
-    for row in soup.find_all('p', class_='prod-desc'):                #get the all resultant product url of the listing
+    for row in soup.find_all('p', class_='prod-desc'):                           #get the all resultant product url of the listing
         main_box=(row.a['href'])
     for row in soup.find_all('p', class_='prod-desc'):
-        product_links.append("https://www.ulta.com" + row.a['href'])  #converting to valid url  and storing it in a list
+        product_links.append("https://www.ulta.com" + row.a['href'])             #converting to valid url  and storing it in a list
 
 # Indicate scraping completion
 print(f'Got All Brand Links! There are {len(product_links)} brands in total.')
