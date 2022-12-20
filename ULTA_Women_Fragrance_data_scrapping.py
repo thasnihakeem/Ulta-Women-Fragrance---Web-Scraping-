@@ -137,9 +137,10 @@ URL="https://www.ulta.com/womens-fragrance?N=26wn"
 
 #list to store the url of every resultant page
 base_url_link = [URL]   #list of base url
-while URL!=[]:                                                            
-    response = requests.get(URL)
-    soup = BeautifulSoup(response.content, 'html.parser')
+while URL!=[]:
+    driver.get(URL)
+    response = driver.page_source
+    soup = BeautifulSoup(response , 'html.parser')
     for all_pages in soup.find_all('li', class_="next-prev floatl-span"):   #get the all resultant page url of the listing
         x=all_pages.find('a',class_='next')
         if x:
@@ -154,9 +155,10 @@ page_lst_link=list(base_url_links)      # converting to list
 
 # Fetching all resulted product links
 product_links = []
-for i in  page_lst_link: 
-    response = requests.get(i)
-    soup = BeautifulSoup(response.content, 'html.parser')
+for each_page_link in  page_lst_link:
+     driver.get(each_page_link)
+    response = driver.page_source
+    soup = BeautifulSoup(response , 'html.parser')
     for row in soup.find_all('p', class_='prod-desc'):                #get the all resultant product url of the listing
         main_box=(row.a['href'])
     for row in soup.find_all('p', class_='prod-desc'):
