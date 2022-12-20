@@ -155,7 +155,7 @@ page_lst_link=list(base_url_links)                                          # co
 # Fetching all resulted product links
 product_links = []
 for each_page_link in  page_lst_link:
-     driver.get(each_page_link)
+    driver.get(each_page_link)
     response = driver.page_source
     soup = BeautifulSoup(response , 'html.parser')
     for row in soup.find_all('p', class_='prod-desc'):                           #get the all resultant product url of the listing
