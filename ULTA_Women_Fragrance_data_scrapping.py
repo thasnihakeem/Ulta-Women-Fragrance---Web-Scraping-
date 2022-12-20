@@ -88,11 +88,18 @@ def star_rating(dom):
     return  star_rating
 
 def Price():
-    try:                                                                                                         #try to get the data
-        Prices=driver.find_element(By.XPATH,'//*[@id="1b7a3ab3-2765-4ee2-8367-c8a0e7230fa4"]/span').text         #get the Price of the listing
-    except:                                                                                                      #if the Price is not found, print the error message
+    try:                                                                                                          #try to get the data
+        Prices=driver.find_element(By.XPATH,'//*[@id="1b7a3ab3-2765-4ee2-8367-c8a0e7230fa4"]/span').text          #get the Price of the listing
+        Prices = str(Prices)                                                                                      #converting to string
+        Prices = Prices.replace('[','')                                                                           #Removing unwanted characters
+        Prices = Prices.replace(']','')
+        Prices = Prices.replace('$','')
+        Prices = Prices.replace("'",'')
+
+    except:                                                                                                       #if the Price is not found, print the error message
         Prices = "Price is not available" 
     return Prices
+
 
 def ingredients(dom):
     try:                                                                                                                   #try to get the data
@@ -109,6 +116,9 @@ def ingredients(dom):
 def Fragrance_Description():
     try:                                                                                                                #try to get the data
         Fragrance_Descriptions=driver.find_element(By.XPATH,'//*[@id="b46bc3ad-9907-43a6-9a95-88c160f02d7f"]/p').text   #get the Fragrance_Description of the listing
+        Fragrance_Descriptions = str(Fragrance_Descriptions)                                                            #converting to string
+        Fragrance_Descriptions = Fragrance_Descriptions.replace('[','')                                                 #Removing unwanted characters
+        Fragrance_Descriptions = Fragrance_Descriptions.replace(']','')
     except:                                                                                                             #if the Fragrance_Description is not found, print the error message 
         Fragrance_Descriptions = "Fragrance_Description is not available" 
     return Fragrance_Descriptions
@@ -183,18 +193,10 @@ for each_product in range(len(df)):
     driver.get(df['Product_url'].iloc[each_product])               
     price=Price()                                                                   #Price
     df["Price"].iloc[each_product]= price                                           #To add data to a column
-    df[["Price"]] = df[['Price']].astype(str)                                       #converting to string
-    df["Price"] = df["Price"].str.replace('[','')                                   #Removing unwanted characters
-    df["Price"] = df["Price"].str.replace(']','')
-    df["Price"] = df["Price"].str.replace('$','')
-    df["Price"] = df["Price"].str.replace("'",'')
-    
+
     fragrance_description=Fragrance_Description()                                   #Fragrance Description
     df['Fragrance Description'].iloc[each_product] = fragrance_description          #To add data to a column
-    df[['Fragrance Description']] = df[['Fragrance Description']].astype(str)       #converting to string 
-    df["Fragrance Description"] = df["Fragrance Description"].str.replace('[','')   #Removing unwanted characters                                                          #Removing unwanted characters
-    df["Fragrance Description"] = df["Fragrance Description"].str.replace(']','')
-
+ 
     details=Detail()                                                                #Details
     df['Details'].iloc[each_product] = details                                      #To add data to a column
 
