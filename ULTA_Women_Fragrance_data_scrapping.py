@@ -5,7 +5,6 @@ import csv
 import time
 import random
 import warnings
-import requests
 import numpy as np
 import pandas as pd
 from time import sleep
