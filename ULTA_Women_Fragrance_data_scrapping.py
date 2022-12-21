@@ -167,7 +167,8 @@ for each_page_link in  page_lst_link:
 print(f'Got All Brand Links! There are {len(product_links)} brands in total.')
 
 # Creating a dictionary of the required columns
-data_dic = {'product_url': [], 'brand': [], 'product_name': [],'number_of_reviews': [], 'Details': [], 'star_rating': [],'price':[], 'Fragrance Description':[],'Ingredients':[]}
+data_dic = {'product_url': [], 'brand': [], 'product_name': [],'number_of_reviews': [], 
+            'Details': [], 'star_rating': [],'price':[], 'Fragrance Description':[],'Ingredients':[]}
 
 # Creating a dataframe with those columns
 df=pd.DataFrame(data_dic)
