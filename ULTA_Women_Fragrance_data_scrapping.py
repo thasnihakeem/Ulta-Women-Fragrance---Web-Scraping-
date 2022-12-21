@@ -28,61 +28,61 @@ def extract_content(url):
     dom = et.HTML(str(product_soup))
     return dom
 
-def brand(dom):
+def Brand(dom):
     try:                                                                         #try to get the data
         brand=(dom.xpath('//*[@class="Link_Huge Link_Huge--compact"]/text()'))   #get the Brand name of the listing
-        df['brand'].iloc[each_product] = brand                                   #To add data to a column
-        df[['brand']] = df[['brand']].astype(str)                                #converting to string
-        df['brand'] = df['brand'].str.replace('[','')                            #Removing unwanted characters
-        df['brand'] = df['brand'].str.replace(']','')
-        df['brand'] = df['brand'].str.replace("'",'')
+        df['Brand'].iloc[each_product] = brand                                   #To add data to a column
+        df[['Brand']] = df[['Brand']].astype(str)                                #converting to string
+        df['Brand'] = df['Brand'].str.replace('[','')                            #Removing unwanted characters
+        df['Brand'] = df['Brand'].str.replace(']','')
+        df['Brand'] = df['Brand'].str.replace("'",'')
     except:                                                                      #if the brand is not found, print the error message
         brand = "brand is not available"
-        df['brand'].iloc[each_product] = brand   
+        df['Brand'].iloc[each_product] = brand   
     return  brand
 
-def product(dom):
+def Product(dom):
     try:                                                                                    #try to get the data
         product=(dom.xpath('//*[@class="Text-ds Text-ds--title-5 Text-ds--left"]/text()'))  #get the Product name of the listing
-        df['product_name'].iloc[each_product] = product                                     #To add data to a column
-        df[['product_name']] = df[['product_name']].astype(str)                             #converting to string
-        df["product_name"] = df["product_name"].str.replace('[','')                         #Removing unwanted characters
-        df["product_name"] = df["product_name"].str.replace(']','')
-        df["product_name"] = df["product_name"].str.replace("'",'')
-        df["product_name"] = df["product_name"].str.replace('"','')
+        df['Product_name'].iloc[each_product] = product                                     #To add data to a column
+        df[['Product_name']] = df[['Product_name']].astype(str)                             #converting to string
+        df['Product_name'] = df['Product_name'].str.replace('[','')                         #Removing unwanted characters
+        df['Product_name'] = df['Product_name'].str.replace(']','')
+        df['Product_name'] = df['Product_name'].str.replace("'",'')
+        df['Product_name'] = df['Product_name'].str.replace('"','')
     except:                                                                                 #if the product_name is not found, print the error message
         product = "product_name is not available"
-        df['product'].iloc[each_product] = product   
+        df['Product_name'].iloc[each_product] = product   
     return  product
 
-def reviews(dom):
+def Reviews(dom):
     try:                                                                                                                 #try to get the data
         number_of_reviews=(dom.xpath('//*[@class="Text-ds Text-ds--body-3 Text-ds--left Text-ds--neutral-600"]/text()')) #get the number_of_reviews of the listing
-        df['number_of_reviews'].iloc[each_product] = number_of_reviews                                                   #To add data to a column
-        df[['number_of_reviews']] = df[['number_of_reviews']].astype(str)                                                #converting to string
-        df["number_of_reviews"] = df["number_of_reviews"].str.replace(',','')                                            #Removing unwanted characters
-        df["number_of_reviews"] = df["number_of_reviews"].str.replace('(','')
-        df["number_of_reviews"] = df["number_of_reviews"].str.replace(')','')
-        df["number_of_reviews"] = df["number_of_reviews"].str.replace('[','')
-        df["number_of_reviews"] = df["number_of_reviews"].str.replace(']','')
-        df["number_of_reviews"] = df["number_of_reviews"].str.replace("'size:'",'')
-        df["number_of_reviews"] = df["number_of_reviews"].str.replace("'",'')
+        df['Number_of_reviews'].iloc[each_product] = number_of_reviews                                                   #To add data to a column
+        df[['Number_of_reviews']] = df[['number_of_reviews']].astype(str)                                                #converting to string
+        df['Number_of_reviews'] = df['Number_of_reviews'].str.replace(',','')                                            #Removing unwanted characters
+        df['Number_of_reviews'] = df['Number_of_reviews'].str.replace('(','')
+        df['Number_of_reviews'] = df['Number_of_reviews'].str.replace(')','')
+        df['Number_of_reviews'] = df['Number_of_reviews'].str.replace('[','')
+        df['Number_of_reviews'] = df['Number_of_reviews'].str.replace(']','')
+        df['Number_of_reviews'] = df['Number_of_reviews'].str.replace("'size:'",'')
+        df['Number_of_reviews'] = df['Number_of_reviews'].str.replace("'",'')
     except:                                                                                                             #if the number_of_reviews is not found, print the error message                                       
         number_of_reviews = "number_of_reviews is not available"
-        df['number_of_reviews'].iloc[each_product] = number_of_reviews   
+        df['Number_of_reviews'].iloc[each_product] = number_of_reviews   
     return  number_of_reviews
 
-def star_rating(dom):
+def Star_rating(dom):
     try:                                                                                       #try to get the data
         star_rating=(dom.xpath('//*[@class="Text-ds Text-ds--body-3 Text-ds--left"]/text()'))  #get the star_rating of the listing
-        df['star_rating'].iloc[each_product] = star_rating                                     #To add data to a column
-        df[['star_rating']] = df[['star_rating']].astype(str)                                  #converting to string
-        df["star_rating"] = df["star_rating"].str.replace(']','')                              #Removing unwanted characters
-        df["star_rating"] = df["star_rating"].str.replace('[','')
-        df["star_rating"] = df["star_rating"].str.replace('Q & A','')
+        df['Star_rating'].iloc[each_product] = star_rating                                     #To add data to a column
+        df[['Star_rating']] = df[['Star_rating']].astype(str)                                  #converting to string
+        df['Star_rating'] = df['Star_rating'].str.replace(']','')                              #Removing unwanted characters
+        df['Star_rating'] = df['Star_rating'].str.replace('[','')
+        df['Star_rating'] = df['Star_rating'].str.replace('Q & A','')
     except:                                                                                    #if the star_rating is not found, print the error message 
         star_rating = "star_rating is not available"
-        df['star_rating'].iloc[each_product] = star_rating   
+        df['Star_rating'].iloc[each_product] = star_rating   
     return  star_rating
 
 def Price():
@@ -97,17 +97,17 @@ def Price():
         Prices = "Price is not available" 
     return Prices
 
-def ingredients(dom):
+def Ingredients(dom):
     try:                                                                                                                   #try to get the data
-        Ingredients=(dom.xpath('//*[@id="bb5f7945-7101-402b-b8b3-1ad025315d50"]/div/div/details[3]/div/div/p[1]/text()'))  #get the Ingredients of the listing
-        df['Ingredients'].iloc[each_product] = Ingredients                                                                 #To add data to a column 
+        ingredients=(dom.xpath('//*[@id="bb5f7945-7101-402b-b8b3-1ad025315d50"]/div/div/details[3]/div/div/p[1]/text()'))  #get the Ingredients of the listing
+        df['Ingredients'].iloc[each_product] = ingredients                                                                 #To add data to a column 
         df[['Ingredients']] = df[['Ingredients']].astype(str)                                                              #converting to string
-        df["Ingredients"] = df["Ingredients"].str.replace('[','')                                                          #Removing unwanted characters
-        df["Ingredients"] = df["Ingredients"].str.replace(']','')
+        df['Ingredients'] = df['Ingredients'].str.replace('[','')                                                          #Removing unwanted characters
+        df['Ingredients'] = df['Ingredients'].str.replace(']','')
     except:                                                                                                                #if the Ingredients is not found, print the error message 
-        Ingredients = "Ingredients is not available"
-        df['Ingredients'].iloc[each_product] = Ingredients   
-    return  Ingredients
+        ingredients = "Ingredients is not available"
+        df['Ingredients'].iloc[each_product] = ingredients   
+    return  ingredients
     
 def Fragrance_Description():
     try:                                                                                                                #try to get the data
@@ -167,8 +167,8 @@ for each_page_link in  page_lst_link:
 print(f'Got All Brand Links! There are {len(product_links)} brands in total.')
 
 # Creating a dictionary of the required columns
-data_dic = {'product_url': [], 'brand': [], 'product_name': [],'number_of_reviews': [], 
-            'Details': [], 'star_rating': [],'price':[], 'Fragrance Description':[],'Ingredients':[]}
+data_dic = {'Product_url': [], 'Brand': [], 'Product_name': [],'Number_of_reviews': [], 
+            'Details': [], 'Star_rating': [],'Price':[], 'Fragrance Description':[],'Ingredients':[]}
 
 # Creating a dataframe with those columns
 df=pd.DataFrame(data_dic)
