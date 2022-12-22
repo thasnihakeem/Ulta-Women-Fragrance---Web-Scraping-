@@ -6,6 +6,7 @@ import pandas as pd
 from lxml import etree as et
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
@@ -35,7 +36,7 @@ def Brand(dom):
 
 def Product(dom):
     try:                                                                                            #try to get the data
-        product=(dom.xpath('//*[@id="92384e5c-2234-4e8f-bef7-e80391889cfc"]/h1/span[2]/text()'))  #get the Product name of the listing
+        product=(dom.xpath('//*[@id="92384e5c-2234-4e8f-bef7-e80391889cfc"]/h1/span[2]/text()'))    #get the Product name of the listing
         df['Product_name'].iloc[each_product] = product                                             #To add data to a column
         df[['Product_name']] = df[['Product_name']].astype(str)                                     #converting to string
         df['Product_name'] = df['Product_name'].str.replace('[','')                                 #Removing unwanted characters
