@@ -91,13 +91,13 @@ def Price():
     return Prices
 
 def Ingredients(dom):
-    try:                                                                                                                   #try to get the data
-        ingredients=(dom.xpath('//*[@id="bb5f7945-7101-402b-b8b3-1ad025315d50"]/div/div/details[3]/div/div/p[1]/text()'))  #get the Ingredients of the listing
-        df['Ingredients'].iloc[each_product] = ingredients                                                                 #To add data to a column 
-        df[['Ingredients']] = df[['Ingredients']].astype(str)                                                              #converting to string
-        df['Ingredients'] = df['Ingredients'].str.replace('[','')                                                          #Removing unwanted characters
+    try:                                                                                         #try to get the data
+        ingredients=ingredients=(dom.xpath("//*[@aria-controls='Ingredients']//p/text()"))       #get the Ingredients of the listing
+        df['Ingredients'].iloc[each_product] = ingredients                                       #To add data to a column 
+        df[['Ingredients']] = df[['Ingredients']].astype(str)                                    #converting to string
+        df['Ingredients'] = df['Ingredients'].str.replace('[','')                                #Removing unwanted characters
         df['Ingredients'] = df['Ingredients'].str.replace(']','')
-    except:                                                                                                                #if the Ingredients is not found, print the error message 
+    except:                                                                                      #if the Ingredients is not found, print the error message 
         ingredients = "Ingredients is not available"
         df['Ingredients'].iloc[each_product] = ingredients   
     return  ingredients
