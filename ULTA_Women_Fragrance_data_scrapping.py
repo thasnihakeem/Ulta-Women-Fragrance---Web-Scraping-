@@ -6,8 +6,6 @@ import pandas as pd
 from lxml import etree as et
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from unidecode import unidecode
-from IPython.display import clear_output
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
