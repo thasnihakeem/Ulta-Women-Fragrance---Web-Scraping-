@@ -1,14 +1,8 @@
 # Importing libraries
-import re
-import ast
-import csv
 import time
 import random
 import warnings
-import numpy as np
 import pandas as pd
-from time import sleep
-from getpass import getpass
 from lxml import etree as et
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -174,17 +168,17 @@ data_dic = {'Product_url': [], 'Brand': [], 'Product_name': [],'Number_of_review
 df=pd.DataFrame(data_dic)
 
 # Assigning the scraped links to the column 'product_url'
-df['product_url']=product_links
+df['Product_url']=product_links
 
 # Scraping data like 'brand_name','product_name','number_of_reviews','love_count','star_rating'  and 'ingredients'
 for each_product in range(len(df)):
-    product_url = df['product_url'].iloc[each_product]
+    product_url = df['Product_url'].iloc[each_product]
     product_content = extract_content(product_url)
-    brand(product_content)                                 # brands
-    product(product_content)                               # product_name
-    reviews(product_content)                               # number_of_review
-    star_rating(product_content)                           # star_rating
-    ingredients(product_content)                           #ingredients
+    Brand(product_content)                                 # brands
+    Product(product_content)                               # product_name
+    Reviews(product_content)                               # number_of_review
+    Star_rating(product_content)                           # star_rating
+    Ingredients(product_content)                           #ingredients
     
 # Scraping 'price' ,'Fragrance Description' and 'Details' data
 for each_product in range(len(df)):
