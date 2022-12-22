@@ -113,14 +113,14 @@ def Fragrance_Description():
     return Fragrance_Descriptions
 
 def Detail():
-    try:                                                                   #try to get '+' button
-        driver.find_element(By.XPATH,'//*[@id="Details"]').click()         #to click the '+' button of the in the site to get the details data
-    except:                                                                #to pass it ,if '+' button can't be located
+    try:                                                                                   #try to get '+' button
+        driver.find_element(By.XPATH,'//*[@id="Details"]').click()                         #to click the '+' button of the in the site to get the details data
+    except:                                                                                #to pass it ,if '+' button can't be located
         pass
     time.sleep(3)
-    try:                                                                                                                   #try to get the data
-        Details = driver.find_element(By.XPATH,'//*[@id="bb5f7945-7101-402b-b8b3-1ad025315d50"]/div/div/details[1]').text  #get the Details of the listing                                                                        #To add data to a column
-    except:                                                                                                                #if the Details is not found, print the error message
+    try:                                                                                   #try to get the data
+        Details = driver.find_element(By.XPATH, "//*[@aria-controls='Details']").text      #get the Details of the listing                                                                        #To add data to a column
+    except:                                                                                #if the Details is not found, print the error message
         Details = "Details is not available"
     return Details                                                                                 
 
