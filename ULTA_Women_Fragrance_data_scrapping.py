@@ -119,7 +119,7 @@ def Detail():
         pass
     time.sleep(3)
     try:                                                                                   #try to get the data
-        Details = driver.find_element(By.XPATH, "//*[@aria-controls='Details']").text      #get the Details of the listing                                                                        #To add data to a column
+        Details = driver.find_element(By.XPATH, "//*[@aria-controls='Details']").text      #get the Details of the listing                                                                     
     except:                                                                                #if the Details is not found, print the error message
         Details = "Details is not available"
     return Details                                                                                 
